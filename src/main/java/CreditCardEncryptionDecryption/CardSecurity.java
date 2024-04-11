@@ -55,7 +55,7 @@ public class CardSecurity extends HttpServlet {
         // Save the encrypted card number and other details into the database
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection connection = DriverManager.getConnection("jdbc:mysql://admin.cjceo0oqcyqk.ca-central-1.rds.amazonaws.com:3306/credit_card_security_db", "500096288@stu.upes.ac.in", "Chetanshi@123");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://credit-card-security.cbs4oqwaqj6e.ca-central-1.rds.amazonaws.com:3306/credit_card_security_db", "", "");
 
             String query = "INSERT INTO credit_card_details (user_email, encrypted_card_number, real_card_number, card_date, cvv) VALUES (?, ?, ?, ?, ?)";
             PreparedStatement preparedStatement = connection.prepareStatement(query);

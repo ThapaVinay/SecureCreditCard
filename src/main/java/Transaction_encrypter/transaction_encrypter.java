@@ -81,9 +81,9 @@ public class transaction_encrypter extends HttpServlet {
     }
     
     private void saveToDatabase(String secretKey, String encryptedDetails) {
-        String url = "jdbc:mysql://admin.cjceo0oqcyqk.ca-central-1.rds.amazonaws.com:3306/credit_card_security_db";
-        String username = "500096288@stu.upes.ac.in";
-        String password = "Chetanshi@123";
+        String url = "jdbc:mysql://credit-card-security.cbs4oqwaqj6e.ca-central-1.rds.amazonaws.com:3306/credit_card_security_db";
+        String username = "";
+        String password = "";
 
         try (Connection connection = DriverManager.getConnection(url, username, password)) {
             String sql = "INSERT INTO transaction_details (secret_key, encrypted_text) VALUES (?, ?)";
