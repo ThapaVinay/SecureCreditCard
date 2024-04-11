@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Encrypter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease-in-out;
+            width: 400px;
+        }
+
+        .container:hover {
+            box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .section {
+            margin-bottom: 20px;
+        }
+
+        .section h3 {
+            margin-bottom: 10px;
+            color: #007bff;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 22px);
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+            margin-top: 10px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .result {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #f9f9f9;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .result img {
+            width: 100%;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="transaction_encrypter" method="post">
+            <div class="section">
+                <h3>Sender Details</h3>
+                <div class="form-group">
+                    <label for="senderAccountNumber">Account Number:</label>
+                    <input type="text" id="senderAccountNumber" name="senderAccountNumber">
+                </div>
+                <div class="form-group">
+                    <label for="senderIFSC">IFSC Code:</label>
+                    <input type="text" id="senderIFSC" name="senderIFSC">
+                </div>
+                <div class="form-group">
+                    <label for="senderBank">Bank:</label>
+                    <input type="text" id="senderBank" name="senderBank">
+                </div>
+            </div>
+            
+            <div class="section">
+                <h3>Receiver Details</h3>
+                <div class="form-group">
+                    <label for="receiverAccountNumber">Account Number:</label>
+                    <input type="text" id="receiverAccountNumber" name="receiverAccountNumber">
+                </div>
+                <div class="form-group">
+                    <label for="receiverIFSC">IFSC Code:</label>
+                    <input type="text" id="receiverIFSC" name="receiverIFSC">
+                </div>
+                <div class="form-group">
+                    <label for="receiverBank">Bank:</label>
+                    <input type="text" id="receiverBank" name="receiverBank">
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Amount</h3>
+                <div class="form-group">
+                    <label for="amount">Amount:</label>
+                    <input type="text" id="amount" name="amount">
+                </div>
+            </div>
+            
+            <input type="submit" value="Encrypt">
+        </form>
+        
+        <div class="result">
+            <h3>Encrypted Details:</h3>
+            <p>Encrypted details will appear here.</p>
+        </div>
+    </div>
+</body>
+</html>

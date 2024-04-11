@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Secure Card and Transaction</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 20px; /* Adjusted padding for top row */
+    }
+
+    .heading {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+    .top-row {
+        width: 90%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .action-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .action-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .card-form {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        max-width: 400px;
+        width: 90%;
+        margin: 20px 0;
+        transition: box-shadow 0.3s ease;
+    }
+
+    .card-form:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    .card-inputs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .card-inputs input {
+        width: calc(50% - 10px);
+    }
+
+    .success-message {
+        font-size: 18px;
+        color: green;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    #decryptForm {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    #decryptForm input[type="text"] {
+        margin-bottom: 10px;
+        width: 80%;
+    }
+
+    #decryptBtn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 80%;
+    }
+
+    #decryptBtn:hover {
+        background-color: #0056b3;
+    }
+
+    /* Media Query for smaller screens */
+    @media (max-width: 600px) {
+        .card-form {
+            padding: 20px;
+        }
+
+        .card-inputs {
+            flex-direction: column;
+        }
+
+        .card-inputs input {
+            width: 100%;
+            margin-bottom: 10px;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="heading">Secure Card and Transaction</div>
+<marquee style="background-color:tomato;"><b>Welcome to project: The Secure Card & transaction. All your data will be saved! Ensure to save your secret key and encrypted transaction when done the transaction encryption.</b> </marquee>
+        <br>
+        <div class="top-row">
+            <button class="action-btn" id="encryptBtn">Encrypt Transaction</button>
+            <button class="action-btn" id="decryptTopBtn">Decrypt Transaction</button>
+        </div>
+
+        <div class="card-form">
+            <h2 style="color: rgb(227, 89, 64);">Enter Credit Card Details</h2>
+            <form id="cardForm">
+                <div class="card-inputs">
+                    <input type="text" class="card-number" name="card_number" placeholder="Card Number" required maxlength="16" pattern="[0-9]{16}">
+                    <input type="text" class="card-cvv" name="cvv" placeholder="CVV" required maxlength="3" pattern="[0-9]{3}">
+                </div>
+                <div class="card-inputs">
+                    <input type="text" class="card-expiry" name="card_date" placeholder="MM/YYYY" required pattern="(0[1-9]|1[0-2])\/[0-9]{4}">
+                    <input type="email" class="user-name" name="user_email" placeholder="email" required>
+                </div>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+        <div id="decryptForm">
+            <input type="text" id="decryptCardNumber" name="decrypt_text" placeholder="Encrypted Card Number" required>
+            <button class="action-btn" id="decryptFormBtn">Decrypt</button>
+        </div>
+
+        <div class="success-message" id="successMessage"></div>
+    </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#cardForm').submit(function(e){
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: 'CardSecurity',
+                    data: $('#cardForm').serialize(),
+                    success: function(response){
+                        $('#successMessage').html(response);
+                    }
+                });
+            });
+
+            $('#encryptBtn').click(function(){
+            	window.open('transaction_encrypter.html', '_blank');
+            });
+
+            $('#decryptFormBtn').click(function(){
+                var encryptedCardNumber = $('#decryptCardNumber').val();
+                $.ajax({
+                    type: 'POST',
+                    url: 'Decrypter',
+                    data: { decrypt_text: encryptedCardNumber },
+                    success: function(response){
+                        $('#successMessage').html(response);
+                    }
+                });
+            });
+
+            $('#decryptTopBtn').click(function(){
+            	window.open('decrypt.html', '_blank');
+            });
+        });
+    </script>
+</body>
+</html>
