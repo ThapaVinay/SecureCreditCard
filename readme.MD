@@ -1,6 +1,6 @@
 # SecureCreditCard 
 
-![SecureCreditCard](images/secure_credit_card.png)
+![SecureCreditCard](image/secure_credit_card.png)
 
 
 SecureCreditCard is a Java application designed to encrypt credit card details using Advanced Encryption Standard (AES) encryption and store them securely in an Amazon Web Services Relational Database Service (AWS RDS). This application provides a secure and reliable solution for storing sensitive credit card information while ensuring data confidentiality and integrity.
